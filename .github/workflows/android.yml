@@ -30,30 +30,3 @@ jobs:
         with:
           name: app-release-apk
           path: app/build/outputs/apk/release/app-release.apk
-
-      # ----------------------------------------------------------
-      #  下面这一段 = 模拟器 + 安装 + 启动 + 日志抓取（不会卡）
-      # ----------------------------------------------------------
-      - name: Instrumented & logcat capture
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 34
-          arch: x86_64
-          emulator-options: -no-snapshot-save -no-audio -no-window
-          script: |
-            # 此时模拟器已启动，adb 已就绪
-            adb logcat -c                       # 100% 不卡
-            adb install -r app/build/outputs/apk/release/app-release.apk
-            adb shell am start -n com.project.lumina.client/.activity.MainActivity
-            sleep 10
-            adb logcat -d > logcat.txt          # 一次性 dump
-      # ----------------------------------------------------------
-
-      - name: Upload crash info
-        uses: actions/upload-artifact@v4
-        with:
-          name: crash-info
-          path: |
-            logcat.txt
-            app/build/outputs/native-debug-symbols/
-            app/build/outputs/mapping/release/mapping.txt
