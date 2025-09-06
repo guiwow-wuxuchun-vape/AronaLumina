@@ -812,7 +812,6 @@ object TablerIcons {
     val BrandFigma = R.drawable.ic_brand_figma
     val BrandFilezilla = R.drawable.ic_brand_filezilla
     val BrandFinder = R.drawable.ic_brand_finder
-    val BrandFirebase = R.drawable.ic_brand_firebase
     val BrandFirefox = R.drawable.ic_brand_firefox
     val BrandFiverr = R.drawable.ic_brand_fiverr
     val BrandFlickr = R.drawable.ic_brand_flickr
