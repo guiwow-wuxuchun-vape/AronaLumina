@@ -95,7 +95,7 @@ class TargetHud(iconResId: Int = AssetManager.getAsset("ic_target")) : Element(
             }
             .sortedBy { it.distance(session.localPlayer) } 
             .take(1) 
-          return entities
+        return entities
     }
 
     private fun getEntityName(entity: Entity): String {
