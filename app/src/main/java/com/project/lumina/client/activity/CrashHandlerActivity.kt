@@ -55,7 +55,7 @@ class CrashHandlerActivity : ComponentActivity() {
             Configuration(
                 apiKey = TrackUtil.TRACK_API,
                 context = applicationContext,
-                defaultTracking = DefaultTrackingOptions.ALL,
+                defaultTracking = DefaultTrackingOptions.NONE,
             )
         )
         amplitude.track("Lumina Crashed")
