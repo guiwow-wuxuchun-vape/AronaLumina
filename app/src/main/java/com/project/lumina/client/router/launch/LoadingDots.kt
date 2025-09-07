@@ -44,7 +44,7 @@ fun LoadingDots() {
                     .padding(horizontal = 4.dp)
                     .size(10.dp)
                     .alpha(alpha.value)
-                    .background(Color.White, CircleShape)
+                    .background(Color(0xFF363537), CircleShape)
             )
         }
     }
