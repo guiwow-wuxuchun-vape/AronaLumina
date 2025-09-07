@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Lumina Client</string>
+    <string name="app_name" translatable="false">AronaLumina</string>
     <string name="home">Home</string>
     <string name="what_is_this">What\'s this?</string>
     <string name="introduction">LuminaClient is a Minecraft Bedrock plugin implemented using a MITM attack, which allows you to cheat without modifying the game\'s memory.</string>
