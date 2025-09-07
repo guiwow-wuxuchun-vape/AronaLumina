@@ -12,9 +12,6 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import com.amplitude.android.Amplitude
-import com.amplitude.android.Configuration
-import com.amplitude.android.DefaultTrackingOptions
 import com.project.lumina.client.router.launch.AnimatedLauncherScreen
 import com.project.lumina.client.ui.theme.LuminaClientTheme
 import com.project.lumina.client.util.HashCat
@@ -29,15 +26,6 @@ class LaunchActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-
-        val amplitude = Amplitude(
-            Configuration(
-                apiKey = TrackUtil.TRACK_API,
-                context = applicationContext,
-                defaultTracking = DefaultTrackingOptions.ALL,
-            )
-        )
-        amplitude.track("Launch Activity Init")
 
         val updateCheck = UpdateCheck()
         updateCheck.initiateHandshake(this)
