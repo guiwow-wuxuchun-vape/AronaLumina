@@ -20,10 +20,15 @@ class AppContext : Application(), Thread.UncaughtExceptionHandler {
         super.onCreate()
         instance = this
 
-        File(filesDir, "logs").mkdirs()
+        mark("进入Application")
         Thread.setDefaultUncaughtExceptionHandler(this)
+        mark("setDefaultUncaughtExceptionHandler")
         themeManager = ThemeManager(this)
+        mark("themeManager")
     }
+
+    private fun mark(pos: String) =
+    File(filesDir, "mark_$pos").apply { mkdirs() }
 
     override fun uncaughtException(t: Thread, e: Throwable) {
         val stackTrace = e.stackTraceToString()
