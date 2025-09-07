@@ -11,11 +11,11 @@
     "textModules": "#FFF8F8FF"
   },
   "launchActivity": {
-    "launcherRadial": "#FFF7ECE1",
+    "launcherRadial": "#FF86D7F7",
     "lAnimation": "#FFD4CBC0",
-    "lText": "#FFF7ECE1",
-    "lBlob1": "#29F7ECE1",
-    "lBlob2": "#1FF7ECE1",
+    "lText": "#FF86D7F7",
+    "lBlob1": "#2986D7F7",
+    "lBlob2": "#1F86D7F7",
     "lBg1": "#FF121212",
     "lBg2": "#FF1D1D1D"
   },
@@ -84,12 +84,12 @@
       "nColorItem7": "#00010202"
     },
     "packItem": {
-      "pColorItem1": "#FFF7ECE1"
+      "pColorItem1": "#FF86D7F7"
     }
   },
   "material": {
     "dark": {
-      "primary": "#FFF7ECE1",
+      "primary": "#FF86D7F7",
       "onPrimary": "#FF1C1B1E",
       "primaryContainer": "#FFD4CBC0",
       "onPrimaryContainer": "#FF2E2D30",
@@ -106,15 +106,15 @@
       "errorContainer": "#FFA01313",
       "onErrorContainer": "#FFF5C7C7",
       "background": "#FF2E2D30",
-      "onBackground": "#FFF7ECE1",
+      "onBackground": "#FF86D7F7",
       "surface": "#FF2E2D30",
-      "onSurface": "#FFF7ECE1",
+      "onSurface": "#FF86D7F7",
       "surfaceVariant": "#FF4A484B",
       "onSurfaceVariant": "#FFBDB8B5",
       "outline": "#FF7C7A7C",
       "outlineVariant": "#FF4A484B",
       "scrim": "#FF000000",
-      "inverseSurface": "#FFF7ECE1",
+      "inverseSurface": "#FF86D7F7",
       "inverseOnSurface": "#FF2E2D30",
       "inversePrimary": "#FF7C7A7C",
       "surfaceDim": "#FF1C1B1E",
