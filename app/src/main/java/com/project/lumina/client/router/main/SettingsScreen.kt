@@ -225,8 +225,8 @@ fun SettingsScreen() {
 
                         
                         SettingToggle(
-                            title = "Optimize Network",
-                            description = "Initialize network optimization and configure sockets for better performance",
+                            title = "优化网络",
+                            description = "初始化网络优化并配置套接字来获得更好的性能",
                             checked = optimizeNetworkEnabled,
                             onCheckedChange = { isEnabled ->
                                 if (isEnabled) {
@@ -255,8 +255,8 @@ fun SettingsScreen() {
 
                         
                         SettingToggle(
-                            title = "High Priority Threads",
-                            description = "Set application threads to foreground priority for better performance",
+                            title = "提高线程优先级",
+                            description = "将应用线程设置为前台优先级以提升性能",
                             checked = priorityThreadsEnabled,
                             onCheckedChange = { isEnabled ->
                                 priorityThreadsEnabled = isEnabled
@@ -273,8 +273,8 @@ fun SettingsScreen() {
 
                         
                         SettingToggle(
-                            title = "Use Fast DNS",
-                            description = "Use Google's DNS servers for faster name resolution",
+                            title = "使用快速 DNS",
+                            description = "使用谷歌 DNS 加速域名解析",
                             checked = fastDnsEnabled,
                             onCheckedChange = { isEnabled ->
                                 fastDnsEnabled = isEnabled
@@ -291,7 +291,7 @@ fun SettingsScreen() {
 
 
                         SettingToggle(
-                            title = "Inject Neko Pack",
+                            title = "注入 Neko 包",
                             description = "Enable injection of Neko pack for enhanced features",
                             checked = injectNekoPackEnabled,
                             onCheckedChange = { isEnabled ->
@@ -304,8 +304,8 @@ fun SettingsScreen() {
 
 
                         SettingToggle(
-                            title = "Disable ConnectionInfo Overlay",
-                            description = "Disable the connection info overlay that appears when starting the service",
+                            title = "不显示连接信息 GUI",
+                            description = "就是你进游戏之后看到的那个写着ip和端口的窗口，你把这玩意关了他就不显示了",
                             checked = disableConnectionInfoOverlay,
                             onCheckedChange = { isEnabled ->
                                 disableConnectionInfoOverlay = isEnabled
@@ -335,13 +335,13 @@ fun SettingsScreen() {
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         Text(
-                            text = "Server Configuration",
+                            text = "服务器配置",
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.SemiBold
                         )
 
                         Text(
-                            text = "Configure server IP address and port",
+                            text = "配置服务器的 IP 和端口",
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -368,7 +368,7 @@ fun SettingsScreen() {
                                 onClick = { showServerConfigDialog = true },
                                 modifier = Modifier.padding(start = 8.dp)
                             ) {
-                                Text("Config")
+                                Text("配置")
                             }
                         }
                     }
@@ -387,13 +387,13 @@ fun SettingsScreen() {
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         Text(
-                            text = "App Manager",
+                            text = "Minecraft 选择器",
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.SemiBold
                         )
 
                         Text(
-                            text = "Select the app that will automatically run when starting the service",
+                            text = "在这里面可以选择其他的 Minecraft，你要是想看看选奇奇怪怪的应用会发生什么我也拦不住你",
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -434,7 +434,7 @@ fun SettingsScreen() {
                                         overflow = TextOverflow.Ellipsis
                                     )
                                     Text(
-                                        text = "Selected Version: ${getAppVersion(selectedAppPackage)}",
+                                        text = "你选中的版本: ${getAppVersion(selectedAppPackage)}",
                                         style = MaterialTheme.typography.bodySmall,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant
                                     )
@@ -445,7 +445,7 @@ fun SettingsScreen() {
                                 onClick = { showAppSelectionDialog = true },
                                 modifier = Modifier.padding(start = 8.dp)
                             ) {
-                                Text("Select")
+                                Text("选择")
                             }
                         }
                     }
@@ -485,9 +485,9 @@ fun SettingsScreen() {
                         mainScreenViewModel.selectCaptureModeModel(
                             captureModeModel.copy(serverHostName = ip, serverPort = portInt)
                         )
-                        Toast.makeText(context, "Server configuration updated", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "服务器配置已更新", Toast.LENGTH_SHORT).show()
                     } catch (e: NumberFormatException) {
-                        Toast.makeText(context, "Invalid port number", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "密码的不要乱输端口号", Toast.LENGTH_SHORT).show()
                     }
                 }
             )
@@ -503,7 +503,7 @@ fun SettingsScreen() {
                 selectedAppPackage = packageName
                 saveSelectedApp(packageName)
                 showAppSelectionDialog = false
-                Toast.makeText(context, "App selected: ${getAppName(packageName)}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "你选择了: ${getAppName(packageName)}", Toast.LENGTH_SHORT).show()
             },
             getAppName = ::getAppName,
             getAppVersion = ::getAppVersion,
@@ -602,7 +602,7 @@ fun ServerConfigDialog(
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     Text(
-                        text = "Server Configuration",
+                        text = "配置服务器",
                         style = MaterialTheme.typography.headlineSmall,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.primary
@@ -611,7 +611,7 @@ fun ServerConfigDialog(
                     OutlinedTextField(
                         value = ip,
                         onValueChange = { ip = it },
-                        label = { Text("IP Address") },
+                        label = { Text("IP 地址") },
                         modifier = Modifier.fillMaxWidth(),
                         leadingIcon = {
                             Icon(
@@ -625,7 +625,7 @@ fun ServerConfigDialog(
                     OutlinedTextField(
                         value = port,
                         onValueChange = { port = it },
-                        label = { Text("Port") },
+                        label = { Text("端口") },
                         modifier = Modifier.fillMaxWidth(),
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                         leadingIcon = {
@@ -665,7 +665,7 @@ fun ServerConfigDialog(
                                     imageVector = Icons.Default.Close,
                                     contentDescription = "Cancel"
                                 )
-                                Text("Cancel")
+                                Text("取消")
                             }
                         }
 
@@ -689,7 +689,7 @@ fun ServerConfigDialog(
                                     imageVector = Icons.Default.Check,
                                     contentDescription = "Apply"
                                 )
-                                Text("Apply")
+                                Text("完成")
                             }
                         }
                     }
@@ -706,16 +706,16 @@ fun PermissionDialog(
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Permission Required") },
-        text = { Text("Network optimization requires special permissions. Would you like to open settings to grant them?") },
+        title = { Text("密码的没权限") },
+        text = { Text("网络优化功能需要修改系统设置的权限，如果你要用这玩意，就必须给这个权限") },
         confirmButton = {
             Button(onClick = onRequestPermission) {
-                Text("Open Settings")
+                Text("授予权限")
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel")
+                Text("算了")
             }
         }
     )
@@ -775,7 +775,7 @@ fun DropdownMenu(
 
     Column(modifier = modifier) {
         Text(
-            text = "Overlay GUI",
+            text = "功能 GUI",
             style = MaterialTheme.typography.labelMedium,
             color = MaterialTheme.colorScheme.primary,
             fontWeight = FontWeight.Medium,
@@ -999,7 +999,7 @@ fun AppSelectionDialog(
                 modifier = Modifier.padding(24.dp)
             ) {
                 Text(
-                    text = "Select App",
+                    text = "选择 App",
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.primary
@@ -1008,7 +1008,7 @@ fun AppSelectionDialog(
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
-                    text = "Choose the app that will automatically launch when starting the service",
+                    text = "你在主菜单点了开始之后，这个app就会自动启动",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -1132,7 +1132,7 @@ fun AppSelectionDialog(
                                 imageVector = Icons.Default.Close,
                                 contentDescription = "Cancel"
                             )
-                            Text("Cancel")
+                            Text("算了")
                         }
                     }
                 }
