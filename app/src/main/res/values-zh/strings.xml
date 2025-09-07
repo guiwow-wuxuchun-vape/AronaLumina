@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Lumina Client</string>
+    <string name="app_name" translatable="false">AronaLumina</string>
     <string name="home">主页</string>
     <string name="what_is_this">这是什么？</string>
     <string name="introduction">LuminaClient 是一个使用 MITM 攻击实现的 Minecraft Bedrock 插件，允许你在不修改游戏内存的情况下作弊。</string>
