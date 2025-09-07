@@ -292,7 +292,7 @@ fun SettingsScreen() {
 
                         SettingToggle(
                             title = "注入 Neko 包",
-                            description = "Enable injection of Neko pack for enhanced features",
+                            description = "开启之后获得一些功能的强化",
                             checked = injectNekoPackEnabled,
                             onCheckedChange = { isEnabled ->
                                 injectNekoPackEnabled = isEnabled
@@ -393,7 +393,7 @@ fun SettingsScreen() {
                         )
 
                         Text(
-                            text = "在这里面可以选择其他的 Minecraft，你要是想看看选奇奇怪怪的应用会发生什么我也拦不住你",
+                            text = "在这里面可以选择其他的 Minecraft",
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
