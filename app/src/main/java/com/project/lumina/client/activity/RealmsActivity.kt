@@ -20,9 +20,6 @@ import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
-import com.amplitude.android.Amplitude
-import com.amplitude.android.Configuration
-import com.amplitude.android.DefaultTrackingOptions
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.project.lumina.client.util.TrackUtil
@@ -59,14 +56,6 @@ class RealmsActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        val amplitude = Amplitude(
-            Configuration(
-                apiKey = TrackUtil.TRACK_API,
-                context = applicationContext,
-                defaultTracking = DefaultTrackingOptions.ALL,
-            )
-        )
-        amplitude.track("Realm Activity")
         super.onCreate(savedInstanceState)
         setContent {
 
