@@ -253,7 +253,7 @@ fun HomePageContent() {
                         ) {
                             
                             Text(
-                                "Lumina",
+                                "AronaLumina | After the End",
                                 color = MaterialTheme.colorScheme.primary,
                                 style = MaterialTheme.typography.headlineMedium,
                                 modifier = Modifier
