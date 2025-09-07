@@ -219,7 +219,7 @@ fun LauncherCard(
                                 Icon(
                                     imageVector = icon,
                                     contentDescription = title,
-                                    tint = MaterialTheme.colorScheme.primary,
+                                    tint = Color(0xFF86D7F7),
                                     modifier = Modifier.size(20.dp)
                                 )
                             }
@@ -230,7 +230,7 @@ fun LauncherCard(
                         Text(
                             text = title,
                             style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Medium),
-                            color = MaterialTheme.colorScheme.onSurface,
+                            color = Color(0xFF86D7F7),
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
@@ -240,7 +240,7 @@ fun LauncherCard(
                     Text(
                         text = description,
                         style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        color = Color(0xFF86D7F7).copy(alpha = 0.8f),
                         maxLines = 2,
                         overflow = TextOverflow.Ellipsis
                     )
