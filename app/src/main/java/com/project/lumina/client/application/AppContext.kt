@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Intent
 import android.os.Build
 import android.os.Process
+import java.io.File
 import com.project.lumina.client.activity.CrashHandlerActivity
 import com.project.lumina.client.overlay.manager.OverlayManager
 import com.project.lumina.client.ui.theme.ThemeManager
@@ -19,6 +20,7 @@ class AppContext : Application(), Thread.UncaughtExceptionHandler {
         super.onCreate()
         instance = this
 
+        File(filesDir, "logs").mkdirs()
         Thread.setDefaultUncaughtExceptionHandler(this)
         themeManager = ThemeManager(this)
     }
