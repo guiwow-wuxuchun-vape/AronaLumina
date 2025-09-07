@@ -93,19 +93,19 @@ fun LandscapeLauncherContent() {
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Text(
-                            text = "PROJECT LUMINA",
+                            text = "Arona Lumina",
                             fontSize = 28.sp,
                             fontWeight = FontWeight.Medium,
-                            color = Color.White,
+                            color = Color(0xFF86D7F7),
                             textAlign = TextAlign.Center,
 
                             )
                         if (titleMovedUp) {
                             Spacer(modifier = Modifier.height(8.dp))
                             Text(
-                                text = "Select Mode",
+                                text = "选择模式",
                                 fontSize = 16.sp,
-                                color = Color.White.copy(alpha = 0.7f),
+                                color = Color(0xFF86D7F7).copy(alpha = 0.7f),
                                 textAlign = TextAlign.Center
                             )
                         }
