@@ -1,5 +1,6 @@
 package com.project.lumina.client.activity
 
+import kotlinx.coroutines.launch
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
