@@ -48,9 +48,13 @@ class LaunchActivity : ComponentActivity() {
                 }
             }
         }
+        val sharedPreferences = context.getSharedPreferences("SettingsPrefs", Context.MODE_PRIVATE)
         val skipLoading = sharedPreferences.getBoolean("skipLoading", false)
         if (skipLoading) {
-           startActivityWithTransition(context, MinecraftCheckActivity::class.java)
+           lifecycleScope.launch {
+    startActivityWithTransition(this@LaunchActivity, MinecraftCheckActivity::class.java)
+}
+
         }
 
 
