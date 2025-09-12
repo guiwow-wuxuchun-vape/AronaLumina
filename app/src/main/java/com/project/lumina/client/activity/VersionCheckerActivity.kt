@@ -329,7 +329,7 @@ fun LoadingConfigurationScreen() {
             )
             
             Text(
-                text = "Loading configuration...",
+                text = "正在加载配置...",
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onBackground.copy(alpha = alpha),
                 textAlign = TextAlign.Center

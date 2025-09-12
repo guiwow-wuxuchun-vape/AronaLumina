@@ -86,6 +86,9 @@ fun SettingsScreen() {
     var injectNekoPackEnabled by remember {
         mutableStateOf(sharedPreferences.getBoolean("injectNekoPackEnabled", false))
     }
+    var skipLoading by remember {
+        mutableStateOf(sharedPreferences.getBoolean("skipLoading", false))
+    }
     var disableConnectionInfoOverlay by remember {
         mutableStateOf(sharedPreferences.getBoolean("disableConnectionInfoOverlay", false))
     }
@@ -297,6 +300,19 @@ fun SettingsScreen() {
                             onCheckedChange = { isEnabled ->
                                 injectNekoPackEnabled = isEnabled
                                 saveToggleState("injectNekoPackEnabled", isEnabled)
+                            }
+                        )
+
+                        Divider()
+                        
+                        
+                        SettingToggle(
+                            title = "跳过启动界面",
+                            description = "启动时跳过Loading和模式选择界面",
+                            checked = skipLoading,
+                            onCheckedChange = { isEnabled ->
+                                skipLoading = isEnabled
+                                saveToggleState("skipLoading", isEnabled)
                             }
                         )
 

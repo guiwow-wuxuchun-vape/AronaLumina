@@ -48,6 +48,10 @@ class LaunchActivity : ComponentActivity() {
                 }
             }
         }
+        val skipLoading = sharedPreferences.getBoolean("skipLoading", false)
+        if (skipLoading) {
+           startActivityWithTransition(context, MinecraftCheckActivity::class.java)
+        }
 
 
 

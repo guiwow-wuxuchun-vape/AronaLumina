@@ -229,7 +229,7 @@ private fun HeaderSection() {
         }
 
         Text(
-            text = "Connect to your Minecraft Bedrock Realms",
+            text = "Connect to your Minecraft Bedrock Realms\n此部分不汉化\n你都开挂了你还进啥Realms啊？\n其实只是我懒得做了",
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
             textAlign = TextAlign.Center,

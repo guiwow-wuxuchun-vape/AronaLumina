@@ -125,8 +125,8 @@ fun LandscapeLauncherContent() {
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
                     LauncherCard(
-                        title = "Client Mode",
-                        description = "Lumina For Mobile",
+                        title = "客户端模式\nClient Mode",
+                        description = "总之你选这个就对了",
                         icon = Icons.Filled.Dashboard,
                         isLoading = loadingCard == "main",
                         onClick = {
@@ -137,8 +137,8 @@ fun LandscapeLauncherContent() {
                         }
                     )
                     LauncherCard(
-                        title = "Remote Link",
-                        description = "Connect to external systems",
+                        title = "远程连接\nRemote Link",
+                        description = "我不知道怎么用，没试过",
                         icon = Icons.Filled.Link,
                         isLoading = loadingCard == "remote",
                         onClick = {
