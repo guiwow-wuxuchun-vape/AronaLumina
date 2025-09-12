@@ -11,6 +11,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
+import android.content.Context
+import androidx.lifecycle.lifecycleScope
 import androidx.core.view.WindowInsetsControllerCompat
 import com.project.lumina.client.router.launch.AnimatedLauncherScreen
 import com.project.lumina.client.ui.theme.LuminaClientTheme
@@ -48,7 +50,7 @@ class LaunchActivity : ComponentActivity() {
                 }
             }
         }
-        val sharedPreferences = context.getSharedPreferences("SettingsPrefs", Context.MODE_PRIVATE)
+        val sharedPreferences = getSharedPreferences("SettingsPrefs", Context.MODE_PRIVATE)
         val skipLoading = sharedPreferences.getBoolean("skipLoading", false)
         if (skipLoading) {
            lifecycleScope.launch {
