@@ -85,7 +85,7 @@ fun HomePageContent() {
         val coroutineScope = rememberCoroutineScope()
         val snackbarHostState = LocalSnackbarHostState.current
         val mainScreenViewModel: MainScreenViewModel = viewModel()
-        val pages = listOf(R.string.home, R.string.about, R.string.realms, R.string.settings)
+        val pages = listOf(R.string.home, R.string.about, R.string.settings)
         var currentPage by rememberSaveable { mutableStateOf(R.string.home) }
 
 
@@ -458,7 +458,6 @@ fun HomePageContent() {
                                 onPostPermissionResult(true)
                             })
                             R.string.about -> AboutScreen()
-                            R.string.realms -> RealmsScreen()
                             R.string.settings -> SettingsScreen()
                             else -> {}
                         }

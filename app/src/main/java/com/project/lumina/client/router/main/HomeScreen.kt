@@ -238,8 +238,8 @@ fun HomeScreen(
                     verticalArrangement = Arrangement.spacedBy(4.dp),
                     horizontalAlignment = Alignment.Start
                 ) {
-                    val tabs = listOf("ServerSelector", "View2", "View3", "View4")
-                    val tabNames = listOf(R.string.servers, R.string.accounts, R.string.packs, R.string.realms)
+                    val tabs = listOf("ServerSelector", "View2", "View3")
+                    val tabNames = listOf(R.string.servers, R.string.accounts, R.string.packs)
 
                     tabs.forEachIndexed { index, tab ->
                         val isSelected = selectedView == tab
@@ -276,8 +276,8 @@ fun HomeScreen(
                     horizontalArrangement = Arrangement.spacedBy(4.dp),
                     verticalAlignment = Alignment.Top
                 ) {
-                    val tabs = listOf("ServerSelector", "View2", "View3", "View4")
-                    val tabNames = listOf(R.string.servers, R.string.accounts, R.string.packs, R.string.realms)
+                    val tabs = listOf("ServerSelector", "View2", "View3")
+                    val tabNames = listOf(R.string.servers, R.string.accounts, R.string.packs)
 
                     tabs.forEachIndexed { index, tab ->
                         val isSelected = selectedView == tab
@@ -369,7 +369,6 @@ fun HomeScreen(
                         )
                         "View2" -> AccountScreen(showNotification)
                         "View3" -> PacksScreen()
-                        "View4" -> RealmsSelector()
                     }
                 }
             }
