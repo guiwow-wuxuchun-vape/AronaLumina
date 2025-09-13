@@ -256,7 +256,11 @@ private fun ChoiceValueContent(value: ListValue) {
 @Composable
 private fun FloatValueContent(value: FloatValue) {
     val sliderPos = remember { Animatable(value.value) }
-    LaunchedEffect(value.value) { sliderPos.snapTo(value.value) }   // 外部变更时瞬间同步
+
+    // 外部变更时瞬间同步（ snapTo 必须在协程 ）
+    LaunchedEffect(value.value) {
+        sliderPos.snapTo(value.value)
+    }
 
     Column(
         modifier = Modifier
@@ -273,9 +277,9 @@ private fun FloatValueContent(value: FloatValue) {
                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Medium),
                 color = Color(0xFF86D7F7)
             )
-            val display by rememberUpdatedState(
+            val display = remember(value.value) {
                 String.format(Locale.US, "%.2f", value.value)
-            )
+            }
             Text(
                 text = display,
                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
@@ -288,12 +292,14 @@ private fun FloatValueContent(value: FloatValue) {
             activeTrackColor = Color(0xFF86D7F7),
             inactiveTrackColor = Color(0xFF4A4A4A)
         )
+
+        // 普通回调里不再调用 suspend 函数
         Slider(
             value = sliderPos.value,
             onValueChange = {
                 val new = ((it * 100).roundToInt() / 100f).coerceIn(value.range)
                 if (value.value != new) value.value = new
-                sliderPos.snapTo(it)          // 跟手
+                // 只写 Animatable 的 value，不 snapTo
             },
             valueRange = value.range,
             modifier = Modifier
@@ -332,7 +338,10 @@ private fun FloatValueContent(value: FloatValue) {
 @Composable
 private fun IntValueContent(value: IntValue) {
     val sliderPos = remember { Animatable(value.value.toFloat()) }
-    LaunchedEffect(value.value) { sliderPos.snapTo(value.value.toFloat()) }
+
+    LaunchedEffect(value.value) {
+        sliderPos.snapTo(value.value.toFloat())
+    }
 
     Column(
         modifier = Modifier
@@ -366,7 +375,7 @@ private fun IntValueContent(value: IntValue) {
             onValueChange = {
                 val new = it.roundToInt()
                 if (value.value != new) value.value = new
-                sliderPos.snapTo(it)
+                // 只写值，不 snapTo
             },
             valueRange = value.range.first.toFloat()..value.range.last.toFloat(),
             steps = (value.range.last - value.range.first - 1).coerceAtLeast(0),
@@ -401,6 +410,7 @@ private fun IntValueContent(value: IntValue) {
         }
     }
 }
+
 
 /* --------------------- Bool --------------------- */
 @Composable
