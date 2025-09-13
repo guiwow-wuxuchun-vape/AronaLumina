@@ -38,7 +38,6 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.project.lumina.client.R
@@ -56,14 +55,9 @@ class KitsuGUI : OverlayWindow() {
 
     companion object {
         const val FILE_PICKER_REQUEST_CODE = 1001
-
-
-
     }
 
-    val modernFont = FontFamily(
-        Font(R.font.fredoka_light)
-    )
+    val modernFont = FontFamily(Font(R.font.fredoka_light))
 
     private val _layoutParams by lazy {
         super.layoutParams.apply {
@@ -75,9 +69,7 @@ class KitsuGUI : OverlayWindow() {
                     WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS or
                     WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
 
-            if (Build.VERSION.SDK_INT >= 31) {
-                blurBehindRadius = 20
-            }
+            if (Build.VERSION.SDK_INT >= 31) blurBehindRadius = 20
 
             layoutInDisplayCutoutMode =
                 WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
@@ -101,7 +93,6 @@ class KitsuGUI : OverlayWindow() {
         val cardWidth = 660.dp
         val cardHeight = 500.dp
 
-        
         var shouldAnimate by remember { mutableStateOf(false) }
         val scope = rememberCoroutineScope()
 
@@ -110,30 +101,21 @@ class KitsuGUI : OverlayWindow() {
             shouldAnimate = true
         }
 
-        
-        val translateY by animateFloatAsState(
-            targetValue = if (shouldAnimate) 0f else 100f,
-            animationSpec = tween(
-                durationMillis = 400,
-                easing = FastOutSlowInEasing
-            ),
-            label = "slideAnimation"
-        )
-
-        
-        val alpha by animateFloatAsState(
-            targetValue = if (shouldAnimate) 1f else 0f,
-            animationSpec = tween(
-                durationMillis = 350,
-                easing = LinearOutSlowInEasing
-            ),
-            label = "fadeAnimation"
-        )
+        // 1. 用 Animatable 避免 animateFloatAsState 反复创建
+        val translateY = remember { Animatable(100f) }
+        val alpha = remember { Animatable(0f) }
+        LaunchedEffect(shouldAnimate) {
+            if (shouldAnimate) {
+                launch { translateY.animateTo(0f, tween(400, easing = FastOutSlowInEasing)) }
+                launch { alpha.animateTo(1f, tween(350, easing = LinearOutSlowInEasing)) }
+            }
+        }
 
         val dismissWithAnimation = remember {
             {
-                shouldAnimate = false
                 scope.launch {
+                    launch { translateY.animateTo(100f, tween(200)) }
+                    launch { alpha.animateTo(0f, tween(200)) }
                     delay(200)
                     OverlayManager.dismissOverlayWindow(this@KitsuGUI)
                 }
@@ -156,36 +138,28 @@ class KitsuGUI : OverlayWindow() {
                     interactionSource = remember { MutableInteractionSource() },
                     indication = null
                 ) {
-                    if (selectedModule == null) {
-                        dismissWithAnimation()
-                    }
+                    if (selectedModule == null) dismissWithAnimation()
                 },
             contentAlignment = Alignment.Center
         ) {
             Card(
                 shape = RoundedCornerShape(12.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = KitsuSurface
-                ),
+                colors = CardDefaults.cardColors(containerColor = KitsuSurface),
                 modifier = Modifier
                     .widthIn(max = cardWidth)
                     .height(cardHeight)
                     .padding(horizontal = 24.dp, vertical = 24.dp)
                     .graphicsLayer {
-                        translationY = translateY
-                        this.alpha = alpha
+                        this.alpha = alpha.value
+                        translationY = translateY.value
                     }
                     .clickable(
                         interactionSource = remember { MutableInteractionSource() },
                         indication = null
-                    ) { /* Prevent clicks from passing through */ },
-                elevation = CardDefaults.cardElevation(
-                    defaultElevation = 12.dp
-                )
+                    ) { },
+                elevation = CardDefaults.cardElevation(defaultElevation = 12.dp)
             ) {
-                Row(
-                    modifier = Modifier.fillMaxSize()
-                ) {
+                Row(modifier = Modifier.fillMaxSize()) {
                     Sidebar()
                     VerticalDivider()
                     MainUICard(dismissWithAnimation)
@@ -214,10 +188,9 @@ class KitsuGUI : OverlayWindow() {
                 .padding(12.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center,
+                horizontalArrangement = Arrangement.Center
             ) {
                 Box(
                     modifier = Modifier
@@ -237,9 +210,7 @@ class KitsuGUI : OverlayWindow() {
                         modifier = Modifier.size(24.dp)
                     )
                 }
-
                 Spacer(modifier = Modifier.width(8.dp))
-
                 Text(
                     text = "LUMINA",
                     style = TextStyle(
@@ -252,9 +223,7 @@ class KitsuGUI : OverlayWindow() {
                     overflow = TextOverflow.Ellipsis
                 )
             }
-
             Spacer(modifier = Modifier.height(23.dp))
-
             VerticalCategoryStack()
         }
     }
@@ -269,7 +238,10 @@ class KitsuGUI : OverlayWindow() {
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalAlignment = Alignment.Start
         ) {
-            items(CheatCategory.entries) { category ->
+            items(
+                items = CheatCategory.entries,
+                key = { it.name }          // 2. 加 key 复用
+            ) { category ->
                 VerticalCategoryItem(
                     category = category,
                     isSelected = selectedCheatCategory == category,
@@ -335,9 +307,7 @@ class KitsuGUI : OverlayWindow() {
                 tint = iconColor,
                 modifier = Modifier.size(24.dp)
             )
-
             Spacer(modifier = Modifier.width(8.dp))
-
             Text(
                 text = getCategoryTitle(category),
                 style = TextStyle(
@@ -356,9 +326,7 @@ class KitsuGUI : OverlayWindow() {
     private fun MainUICard(dismissWithAnimation: () -> Unit) {
         Card(
             shape = RoundedCornerShape(topEnd = 12.dp, bottomEnd = 12.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = KitsuSurface
-            ),
+            colors = CardDefaults.cardColors(containerColor = KitsuSurface),
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight()
@@ -368,7 +336,6 @@ class KitsuGUI : OverlayWindow() {
                     .fillMaxSize()
                     .padding(16.dp)
             ) {
-                
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -376,53 +343,41 @@ class KitsuGUI : OverlayWindow() {
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    
-                    key(selectedCheatCategory) {
-                        val titleAlpha by animateFloatAsState(
-                            targetValue = 1f,
-                            animationSpec = tween(durationMillis = 300),
-                            label = "titleAlpha"
-                        )
+                    // 3. 删除无效 key(selectedCheatCategory)
+                    val titleAlpha by animateFloatAsState(
+                        targetValue = 1f,
+                        animationSpec = tween(durationMillis = 300),
+                        label = "titleAlpha"
+                    )
 
-                        Text(
-                            text = getCategoryTitle(selectedCheatCategory),
-                            style = TextStyle(
-                                fontSize = 24.sp,
-                                fontFamily = modernFont,
-                                fontWeight = FontWeight.Bold,
-                                color = KitsuOnSurface
-                            ),
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis,
-                            modifier = Modifier.alpha(titleAlpha)
-                        )
-                    }
+                    Text(
+                        text = getCategoryTitle(selectedCheatCategory),
+                        style = TextStyle(
+                            fontSize = 24.sp,
+                            fontFamily = modernFont,
+                            fontWeight = FontWeight.Bold,
+                            color = KitsuOnSurface
+                        ),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.alpha(titleAlpha)
+                    )
 
-                    
                     Row(
                         horizontalArrangement = Arrangement.End,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         val context = LocalContext.current
-
                         ModernActionButton(
                             iconRes = R.drawable.discord_24,
-                            onClick = {
-                                openUrl("https://discord.gg/6kz3dcndrN", context)
-                            }
+                            onClick = { openUrl("https://discord.gg/6kz3dcndrN", context) }
                         )
-
                         Spacer(modifier = Modifier.width(8.dp))
-
                         ModernActionButton(
                             iconRes = R.drawable.browser_24,
-                            onClick = {
-                                openUrl("https://projectlumina.netlify.app/", context)
-                            }
+                            onClick = { openUrl("https://projectlumina.netlify.app/", context) }
                         )
-
                         Spacer(modifier = Modifier.width(8.dp))
-
                         ModernActionButton(
                             iconRes = R.drawable.cross_circle_24,
                             onClick = dismissWithAnimation,
@@ -433,17 +388,14 @@ class KitsuGUI : OverlayWindow() {
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                
-                key(selectedCheatCategory) {
-                    AnimatedVisibility(
-                        visible = true,
-                        enter = fadeIn(animationSpec = tween(300)) +
-                                slideInHorizontally(animationSpec = tween(300)) { it / 4 },
-                        exit = fadeOut(animationSpec = tween(200)) +
-                                slideOutHorizontally(animationSpec = tween(200)) { -it / 4 }
-                    ) {
-                        MainContentArea()
-                    }
+                AnimatedVisibility(
+                    visible = true,
+                    enter = fadeIn(animationSpec = tween(300)) +
+                            slideInHorizontally(animationSpec = tween(300)) { it / 4 },
+                    exit = fadeOut(animationSpec = tween(200)) +
+                            slideOutHorizontally(animationSpec = tween(200)) { -it / 4 }
+                ) {
+                    MainContentArea()
                 }
             }
         }
@@ -460,24 +412,18 @@ class KitsuGUI : OverlayWindow() {
                     shape = RoundedCornerShape(8.dp)
                 )
         ) {
-            if (selectedCheatCategory == CheatCategory.Config) {
-                ConfigCategoryContent()
-            }
-            else if(selectedCheatCategory == CheatCategory.Home){
-                HomeCategoryUi()
-            }
-
-            else {
-                ModuleContent(
+            when (selectedCheatCategory) {
+                CheatCategory.Config -> ConfigCategoryContent()
+                CheatCategory.Home -> HomeCategoryUi()
+                else -> ModuleContent(
                     selectedCheatCategory,
-                    onOpenSettings = { module ->
-                        selectedModule = module
-                    }
+                    onOpenSettings = { selectedModule = it }
                 )
             }
         }
     }
 
+    /* -------------------- ModernActionButton -------------------- */
     @Composable
     private fun ModernActionButton(
         iconRes: Int,
@@ -497,16 +443,17 @@ class KitsuGUI : OverlayWindow() {
             label = "buttonBackgroundColor"
         )
 
-        val scale by animateFloatAsState(
-            targetValue = if (isPressed) 0.95f else 1f,
-            animationSpec = tween(durationMillis = 100),
-            label = "buttonScale"
-        )
+        // 4. 按压动画也用 Animatable
+        val scale = remember { Animatable(1f) }
+        LaunchedEffect(isPressed) {
+            if (isPressed) scale.animateTo(0.95f, tween(100))
+            else scale.animateTo(1f, tween(100))
+        }
 
         Box(
             modifier = Modifier
                 .size(36.dp)
-                .scale(scale)
+                .scale(scale.value)
                 .clip(CircleShape)
                 .background(backgroundColor)
                 .clickable(
@@ -525,15 +472,9 @@ class KitsuGUI : OverlayWindow() {
                 modifier = Modifier.size(18.dp)
             )
         }
-
-        LaunchedEffect(isPressed) {
-            if (isPressed) {
-                delay(100)
-                isPressed = false
-            }
-        }
     }
 
+    /* -------------------- 工具 -------------------- */
     private fun openUrl(url: String, context: android.content.Context) {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply {
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -541,18 +482,14 @@ class KitsuGUI : OverlayWindow() {
         context.startActivity(intent)
     }
 
-    private fun getCategoryTitle(category: CheatCategory): String {
-        return when (category) {
-            CheatCategory.Combat -> "蘸豆😡"
-            CheatCategory.Motion -> "移动😋"
-            CheatCategory.World -> "世界🤔"
-            CheatCategory.Visual -> "渲染🤓"
-            CheatCategory.Misc -> "杂项🧐"
-            CheatCategory.Config -> "配置💾"
-            CheatCategory.Home -> "信息📋"
-            else -> "Modules"
-        }
+    private fun getCategoryTitle(category: CheatCategory): String = when (category) {
+        CheatCategory.Combat -> "蘸豆😡"
+        CheatCategory.Motion -> "移动😋"
+        CheatCategory.World -> "世界🤔"
+        CheatCategory.Visual -> "渲染🤓"
+        CheatCategory.Misc -> "杂项🧐"
+        CheatCategory.Config -> "配置💾"
+        CheatCategory.Home -> "信息📋"
+        else -> "Modules"
     }
-
-
 }
