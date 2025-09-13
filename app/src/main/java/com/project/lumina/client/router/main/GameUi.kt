@@ -97,6 +97,8 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.animation.core.updateTransition
+import androidx.compose.animation.core.RepeatMode
 import androidx.core.net.toUri
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -149,37 +151,61 @@ fun GameUI() {
     )
 
     
-    val infiniteTransition = rememberInfiniteTransition(label = "rippleEffect")
-    val rippleScale by infiniteTransition.animateFloat(
-        initialValue = 1f,
-        targetValue = 1.3f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(3000, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Reverse
-        ),
+    // 用 updateTransition 替代 rememberInfiniteTransition
+    val uiTransition = updateTransition(
+        targetState = uiVisible,
+        label = "uiVisibilityTransition"
+    )
+
+    // 波纹缩放
+    val rippleScale by uiTransition.animateFloat(
+        transitionSpec = {
+            if (targetState) {
+                repeatable(
+                    iterations = Int.MAX_VALUE,
+                    animation = tween(3000, easing = FastOutSlowInEasing),
+                    repeatMode = RepeatMode.Reverse
+                )
+            } else {
+                tween(0)
+            }
+        },
         label = "rippleScale"
-    )
+    ) { if (it) 1.3f else 1f }
 
+    // 左侧卡片浮动
+    val floatOffsetLeft by uiTransition.animateFloat(
+        transitionSpec = {
+            if (targetState) {
+                repeatable(
+                    iterations = Int.MAX_VALUE,
+                    animation = tween(4000, easing = FastOutSlowInEasing),
+                    repeatMode = RepeatMode.Reverse
+                )
+            } else {
+                tween(0)
+            }
+        },
+        label = "floatOffsetLeft"
+    ) { if (it) 4f else 0f }
     
-    val floatOffsetLeft by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 4f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(4000, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "floatLeft"
-    )
+    // 右侧卡片浮动（带延迟）
+    val floatOffsetRight by uiTransition.animateFloat(
+        transitionSpec = {
+            if (targetState) {
+                repeatable(
+                    iterations = Int.MAX_VALUE,
+                    animation = tween(4000, delayMillis = 800, easing = FastOutSlowInEasing),
+                    repeatMode = RepeatMode.Reverse
+                )
+            } else {
+                tween(0)
+            }
+        },
+        label = "floatOffsetRight"
+    ) { if (it) 4f else 0f }
 
-    val floatOffsetRight by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 4f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(4000, delayMillis = 800, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "floatRight"
-    )
+
 
     var showCustomNotification by remember { mutableStateOf(false) }
     var customNotificationMessage by remember { mutableStateOf("") }
