@@ -44,6 +44,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
+import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -154,14 +155,14 @@ fun SimpleNotificationCard(
     }
 
     val backgroundColor = when (notification.type) {
-        NotificationType.SUCCESS -> MaterialTheme.colorScheme.primaryContainer
+        NotificationType.SUCCESS -> Color(0xFF404040)
         NotificationType.WARNING -> MaterialTheme.colorScheme.tertiaryContainer
         NotificationType.ERROR -> MaterialTheme.colorScheme.errorContainer
         NotificationType.INFO -> MaterialTheme.colorScheme.secondaryContainer
     }
 
     val contentColor = when (notification.type) {
-        NotificationType.SUCCESS -> MaterialTheme.colorScheme.onPrimaryContainer
+        NotificationType.SUCCESS -> Color(0xFF86D7F7)
         NotificationType.WARNING -> MaterialTheme.colorScheme.onTertiaryContainer
         NotificationType.ERROR -> MaterialTheme.colorScheme.onErrorContainer
         NotificationType.INFO -> MaterialTheme.colorScheme.onSecondaryContainer

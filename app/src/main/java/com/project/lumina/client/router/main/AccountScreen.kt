@@ -68,6 +68,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.window.DialogProperties
+import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.BorderStroke
 import com.project.lumina.client.R
 import com.project.lumina.client.constructors.AccountManager
@@ -327,7 +328,7 @@ private fun AccountCard(showNotification: (String, NotificationType) -> Unit) {
                                     )
                                 ),
                             color = if (account == AccountManager.currentAccount)
-                                MaterialTheme.colorScheme.primaryContainer
+                                Color(0xFF404040)
                             else
                                 MaterialTheme.colorScheme.surfaceContainerLow,
                             tonalElevation = if (account == AccountManager.currentAccount) 4.dp else 0.dp
@@ -344,6 +345,7 @@ private fun AccountCard(showNotification: (String, NotificationType) -> Unit) {
                                 ) {
                                     Text(
                                         text = account.remark,
+                                        color = Color(0xFF86D7F7),
                                         style = MaterialTheme.typography.bodyLarge,
                                         fontWeight = FontWeight.Medium
                                     )
@@ -356,7 +358,7 @@ private fun AccountCard(showNotification: (String, NotificationType) -> Unit) {
                                             text = account.platform.deviceType,
                                             style = MaterialTheme.typography.bodySmall,
                                             color = if (account == AccountManager.currentAccount)
-                                                MaterialTheme.colorScheme.onPrimaryContainer
+                                                Color(0xFF86D7F7)
                                             else
                                                 MaterialTheme.colorScheme.onSurfaceVariant
                                         )
@@ -392,7 +394,7 @@ private fun AccountCard(showNotification: (String, NotificationType) -> Unit) {
                                         contentDescription = "Delete",
                                         modifier = Modifier.size(20.dp),
                                         tint = if (account == AccountManager.currentAccount)
-                                            MaterialTheme.colorScheme.onPrimaryContainer
+                                            Color(0xFF86D7F7)
                                         else
                                             MaterialTheme.colorScheme.onSurfaceVariant
                                     )
