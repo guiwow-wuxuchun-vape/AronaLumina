@@ -543,13 +543,13 @@ class KitsuGUI : OverlayWindow() {
 
     private fun getCategoryTitle(category: CheatCategory): String {
         return when (category) {
-            CheatCategory.Combat -> "Combat"
-            CheatCategory.Motion -> "Movement"
-            CheatCategory.World -> "World"
-            CheatCategory.Visual -> "Render"
-            CheatCategory.Misc -> "Misc"
-            CheatCategory.Config -> "Config"
-            CheatCategory.Home -> "Home"
+            CheatCategory.Combat -> "蘸豆😡"
+            CheatCategory.Motion -> "移动😋"
+            CheatCategory.World -> "世界🤔"
+            CheatCategory.Visual -> "渲染🤓"
+            CheatCategory.Misc -> "杂项🧐"
+            CheatCategory.Config -> "配置💾"
+            CheatCategory.Home -> "信息📋"
             else -> "Modules"
         }
     }
