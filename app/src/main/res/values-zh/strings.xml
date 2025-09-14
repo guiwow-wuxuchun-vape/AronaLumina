@@ -252,7 +252,7 @@
     <string name="no_account_added">未添加账户</string>
     <string name="add_a_gaming_account_to_get_started">添加一个游戏账户以开始</string>
     <string name="no_account_added_yet">尚未添加账户</string>
-    <string name="about_lumina">关于 AronaLumina&Lumina</string>
+    <string name="about_lumina">关于 AronaLumina&amp;Lumina</string>
     <string name="lumina_introduction">AronaLumina是一款基于Lumina源代码修改而来的 Minecraft 基岩版网络作弊工具，在Lumina原有基础上优化性能、优化引导、修改UI，追求更好的使用体验。\nmade by 稽静小白\n\nLumina 是一个适用于 Minecraft Bedrock Edition (MCBE) 的 PvP 作弊客户端，跨多个操作系统工作。我们专注于战斗性能和迷你游戏服务器的隐形绕过。</string>
     <string name="lumina_expectation">我们的目标是提供一个轻量、稳定且功能丰富的解决方案，在不影响系统性能或安全性的情况下增强游戏体验。</string>
     <string name="lumina_compatibility">兼容 Android 9+ 设备以及 Minecraft Pocket Edition 的 64 位和 32 位版本，建议使用最新版本的 Minecraft 以获得最佳体验。</string>
