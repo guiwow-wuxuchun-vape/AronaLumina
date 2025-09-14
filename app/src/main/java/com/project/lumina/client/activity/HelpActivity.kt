@@ -42,7 +42,7 @@ class HelpActivity : ComponentActivity() {
         setContent {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colorScheme.surface
                 ) {
                     GuideScreen(
                         currentPage = currentPage,
@@ -233,9 +233,9 @@ private fun GenericPage(title: String, desc: String) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.Start
     ) {
-        Text(title, style = MaterialTheme.typography.headlineLarge)
+        Text(title, style = MaterialTheme.typography.headlineLarge,color = MaterialTheme.colorScheme.onSurface)
         Spacer(Modifier.height(16.dp))
-        Text(desc, style = MaterialTheme.typography.bodyMedium)
+        Text(desc, style = MaterialTheme.typography.bodyMedium,color = MaterialTheme.colorScheme.onSurface)
     }
 }
 
@@ -248,9 +248,9 @@ private fun PermissionPage(title: String, desc: String, onGrant: () -> Unit) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(title, style = MaterialTheme.typography.headlineLarge)
+        Text(title, style = MaterialTheme.typography.headlineLarge,color = MaterialTheme.colorScheme.onSurface)
         Spacer(Modifier.height(16.dp))
-        Text(desc, style = MaterialTheme.typography.bodyMedium)
+        Text(desc, style = MaterialTheme.typography.bodyMedium,color = MaterialTheme.colorScheme.onSurface)
         Spacer(Modifier.height(32.dp))
         Button(onClick = onGrant) { Text("授予权限") }
     }
