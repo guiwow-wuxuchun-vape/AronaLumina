@@ -42,7 +42,7 @@ class HelpActivity : ComponentActivity() {
         setContent {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.surface
+                    color = Color(0xFF404040)
                 ) {
                     GuideScreen(
                         currentPage = currentPage,
@@ -168,22 +168,7 @@ private fun GuideScreen(
                     )
                 }) { Text("访问 GitHub") }
             }
-        },
-        {
-            PermissionPage(
-                title = "请求存储权限",
-                desc = "我们需要存储权限来保存配置文件。",
-                onGrant = onRequestStorage
-            )
-        },
-        {
-            PermissionPage(
-                title = "请求悬浮窗权限",
-                desc = "我们需要悬浮窗权限来显示功能菜单。",
-                onGrant = onRequestOverlay
-            )
         }
-    )
 
     Scaffold(
         bottomBar = {
@@ -233,9 +218,9 @@ private fun GenericPage(title: String, desc: String) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.Start
     ) {
-        Text(title, style = MaterialTheme.typography.headlineLarge,color = MaterialTheme.colorScheme.onSurface)
+        Text(title, style = MaterialTheme.typography.headlineLarge,color = Color(0xFF86D7F7))
         Spacer(Modifier.height(16.dp))
-        Text(desc, style = MaterialTheme.typography.bodyMedium,color = MaterialTheme.colorScheme.onSurface)
+        Text(desc, style = MaterialTheme.typography.bodyMedium,color = Color(0xFF86D7F7))
     }
 }
 
@@ -248,9 +233,9 @@ private fun PermissionPage(title: String, desc: String, onGrant: () -> Unit) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(title, style = MaterialTheme.typography.headlineLarge,color = MaterialTheme.colorScheme.onSurface)
+        Text(title, style = MaterialTheme.typography.headlineLarge,color = Color(0xFF86D7F7))
         Spacer(Modifier.height(16.dp))
-        Text(desc, style = MaterialTheme.typography.bodyMedium,color = MaterialTheme.colorScheme.onSurface)
+        Text(desc, style = MaterialTheme.typography.bodyMedium,color = Color(0xFF86D7F7))
         Spacer(Modifier.height(32.dp))
         Button(onClick = onGrant) { Text("授予权限") }
     }
