@@ -11,6 +11,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
+import androidx.compose.foundation.background // 添加这个导入
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.*
@@ -25,6 +26,8 @@ import androidx.core.content.ContextCompat
 import com.project.lumina.client.ui.theme.LuminaClientTheme
 
 private const val TOTAL_PAGES = 4
+private const val QQ_GROUP_URL = "https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=7XXYAD_O7dGg0vSWxpQlc3QVaPcGMzh6&authKey=nXgqANOzsWiKBF1OydnlRcmZN0cFlZb2EQ+PUat7ymg2LsddmVCCU43yylyikDwJ&noverify=0&group_code=915442376"
+private const val GITHUB_URL = "https://github.com/guiwow-wuxuchun-vape/AronaLumina"
 
 class HelpActivity : ComponentActivity() {
 
@@ -136,13 +139,13 @@ private fun GuideScreen(
         {
             GenericPage(
                 title = "如何使用",
-                desc = "在应用主界面点击“账户”，然后登录你的微软账号\n如果你没有微软账号，请去微软官网注册，不要在本应用内注册"
+                desc = "在应用主界面点击\"账户\"，然后登录你的微软账号\n如果你没有微软账号，请去微软官网注册，不要在本应用内注册"
             )
         },
         {
             GenericPage(
                 title = "如何使用",
-                desc = "账户添加完成之后，选中账户，再点击“服务器”回到服务器主界面，选中服务器之后点击“启动”，然后在minecraft的游戏界面中点击带有“Lumina”字样的多人游戏，如果没有，请查看游戏启动时的连接仓库，并在服务器界面自行添加"
+                desc = "账户添加完成之后，选中账户，再点击\"服务器\"回到服务器主界面，选中服务器之后点击\"启动\"，然后在minecraft的游戏界面中点击带有\"Lumina\"字样的多人游戏，如果没有，请查看游戏启动时的连接仓库，并在服务器界面自行添加"
             )
         },
         {
@@ -159,12 +162,13 @@ private fun GuideScreen(
                 Spacer(Modifier.height(24.dp))
                 Button(onClick = {
                     context.startActivity(
-                        Intent(Intent.ACTION_VIEW, Uri.parse("https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=7XXYAD_O7dGg0vSWxpQlc3QVaPcGMzh6&authKey=nXgqANOzsWiKBF1OydnlRcmZN0cFlZb2EQ+PUat7ymg2LsddmVCCU43yylyikDwJ&noverify=0&group_code=915442376"))
+                        Intent(Intent.ACTION_VIEW, Uri.parse(QQ_GROUP_URL)) // 使用常量
+                    )
                 }) { Text("加入 QQ 群聊") }
                 Spacer(Modifier.height(12.dp))
                 Button(onClick = {
                     context.startActivity(
-                        Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/guiwow-wuxuchun-vape/AronaLumina"))
+                        Intent(Intent.ACTION_VIEW, Uri.parse(GITHUB_URL)) // 使用常量
                     )
                 }) { Text("访问 GitHub") }
             }
@@ -256,7 +260,7 @@ private fun PageIndicator(total: Int, index: Int) {
                     .height(8.dp)
                     .width(width)
                     .clip(CircleShape)
-                    .background(color)
+                    .background(color) // 这里使用了background，现在应该可以正常编译了
             )
         }
     }
