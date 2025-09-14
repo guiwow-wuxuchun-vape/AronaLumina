@@ -62,13 +62,13 @@ class HelpActivity : ComponentActivity() {
         }
     }
 
-    override fun onResume() {
+ /*   override fun onResume() {
         super.onResume()
         when (currentPage) {
             2 -> if (storageGranted()) currentPage++
             3 -> if (overlayGranted()) currentPage++
         }
-    }
+    }*/
 
     private fun requestStorage() {
         if (storageGranted()) return
