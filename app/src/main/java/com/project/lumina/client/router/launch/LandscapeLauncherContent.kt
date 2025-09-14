@@ -42,6 +42,7 @@ import com.project.lumina.client.activity.MainActivity
 import com.project.lumina.client.activity.MinecraftCheckActivity
 import com.project.lumina.client.activity.RemoteLinkActivity
 import com.project.lumina.client.activity.startActivityWithTransition
+import com.project.lumina.client.activity.HelpActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
