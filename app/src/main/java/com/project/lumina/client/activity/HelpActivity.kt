@@ -11,7 +11,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.*
@@ -19,11 +18,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.graphics.Color
-import androidx.compose.foundation.shape.CircleShape
 import androidx.core.content.ContextCompat
+import com.project.lumina.client.ui.theme.LuminaClientTheme
 
 private const val TOTAL_PAGES = 4
 
@@ -38,13 +37,13 @@ class HelpActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
         setContent {
-            LuminaClientTheme{
+            LuminaClientTheme { 
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = Color(0xFF404040)
-                ){
+                ) {
                     GuideScreen(
                         currentPage = currentPage,
                         onPageChange = { currentPage = it },
@@ -58,6 +57,7 @@ class HelpActivity : ComponentActivity() {
                 }
             }
         }
+    }
 
     override fun onResume() {
         super.onResume()
@@ -112,9 +112,9 @@ class HelpActivity : ComponentActivity() {
         Build.VERSION.SDK_INT < Build.VERSION_CODES.M || Settings.canDrawOverlays(this)
 }
 
-/* ==========================================================================
- *                              Compose 部分
- * ========================================================================== */
+/* ------------------------------------------------------------------ */
+/* -------------------------  Compose 区域  --------------------------- */
+/* ------------------------------------------------------------------ */
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 private fun GuideScreen(
@@ -159,8 +159,7 @@ private fun GuideScreen(
                 Spacer(Modifier.height(24.dp))
                 Button(onClick = {
                     context.startActivity(
-                        Intent(Intent.ACTION_VIEW, Uri.parse("http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=7XXYAD_O7dGg0vSWxpQlc3QVaPcGMzh6&authKey=nXgqANOzsWiKBF1OydnlRcmZN0cFlZb2EQ%2BPUat7ymg2LsddmVCCU43yylyikDwJ&noverify=0&group_code=915442376"))
-                    )
+                        Intent(Intent.ACTION_VIEW, Uri.parse("https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=7XXYAD_O7dGg0vSWxpQlc3QVaPcGMzh6&authKey=nXgqANOzsWiKBF1OydnlRcmZN0cFlZb2EQ+PUat7ymg2LsddmVCCU43yylyikDwJ&noverify=0&group_code=915442376"))
                 }) { Text("加入 QQ 群聊") }
                 Spacer(Modifier.height(12.dp))
                 Button(onClick = {
@@ -170,6 +169,7 @@ private fun GuideScreen(
                 }) { Text("访问 GitHub") }
             }
         }
+    )
 
     Scaffold(
         bottomBar = {
@@ -219,9 +219,9 @@ private fun GenericPage(title: String, desc: String) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.Start
     ) {
-        Text(title, style = MaterialTheme.typography.headlineLarge,color = Color(0xFF86D7F7))
+        Text(title, style = MaterialTheme.typography.headlineLarge, color = Color(0xFF86D7F7))
         Spacer(Modifier.height(16.dp))
-        Text(desc, style = MaterialTheme.typography.bodyMedium,color = Color(0xFF86D7F7))
+        Text(desc, style = MaterialTheme.typography.bodyMedium, color = Color(0xFF86D7F7))
     }
 }
 
@@ -234,9 +234,9 @@ private fun PermissionPage(title: String, desc: String, onGrant: () -> Unit) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(title, style = MaterialTheme.typography.headlineLarge,color = Color(0xFF86D7F7))
+        Text(title, style = MaterialTheme.typography.headlineLarge, color = Color(0xFF86D7F7))
         Spacer(Modifier.height(16.dp))
-        Text(desc, style = MaterialTheme.typography.bodyMedium,color = Color(0xFF86D7F7))
+        Text(desc, style = MaterialTheme.typography.bodyMedium, color = Color(0xFF86D7F7))
         Spacer(Modifier.height(32.dp))
         Button(onClick = onGrant) { Text("授予权限") }
     }
