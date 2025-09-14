@@ -21,6 +21,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.shape.CircleShape
 import androidx.core.content.ContextCompat
 
 private const val TOTAL_PAGES = 6
@@ -37,7 +39,7 @@ class HelpActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         
-        setContent {{
+        setContent {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -55,7 +57,6 @@ class HelpActivity : ComponentActivity() {
                 }
             }
         }
-    }
 
     override fun onResume() {
         super.onResume()
