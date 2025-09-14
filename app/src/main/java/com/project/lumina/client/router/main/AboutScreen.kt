@@ -167,16 +167,32 @@ fun AboutScreen() {
                         horizontalArrangement = Arrangement.SpaceEvenly,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
+                        SocialMediaIcon(
+                            icon = painterResource(id = R.drawable.ic_github),
+                            label = "Arona GitHub",
+                            onClick = {
+                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/guiwow-wuxuchun-vape/AronaLumina"))
+                                context.startActivity(intent)
+                            }
+                        )
+                        
+                        SocialMediaIcon(
+                            icon = painterResource(id = R.drawable.ic_qq),
+                            label = "AronaQQ",
+                            onClick = {
+                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=7XXYAD_O7dGg0vSWxpQlc3QVaPcGMzh6&authKey=nXgqANOzsWiKBF1OydnlRcmZN0cFlZb2EQ%2BPUat7ymg2LsddmVCCU43yylyikDwJ&noverify=0&group_code=915442376"))
+                                context.startActivity(intent)
+                            }
+                        )
                         
                         SocialMediaIcon(
                             icon = painterResource(id = R.drawable.ic_github),
-                            label = "GitHub",
+                            label = "ProjectLumina GitHub",
                             onClick = {
                                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/TheProjectLumina/LuminaClient"))
                                 context.startActivity(intent)
                             }
                         )
-                        
                         
                         SocialMediaIcon(
                             icon = painterResource(id = R.drawable.ic_discord),
@@ -186,7 +202,6 @@ fun AboutScreen() {
                                 context.startActivity(intent)
                             }
                         )
-                        
                         
                         SocialMediaIcon(
                             icon = Icons.Filled.Public,
