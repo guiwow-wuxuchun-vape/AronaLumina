@@ -25,7 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.shape.CircleShape
 import androidx.core.content.ContextCompat
 
-private const val TOTAL_PAGES = 6
+private const val TOTAL_PAGES = 4
 
 class HelpActivity : ComponentActivity() {
 
@@ -40,10 +40,11 @@ class HelpActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         
         setContent {
+            LuminaClientTheme{
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = Color(0xFF404040)
-                ) {
+                ){
                     GuideScreen(
                         currentPage = currentPage,
                         onPageChange = { currentPage = it },
@@ -61,8 +62,8 @@ class HelpActivity : ComponentActivity() {
     override fun onResume() {
         super.onResume()
         when (currentPage) {
-            4 -> if (storageGranted()) currentPage++
-            5 -> if (overlayGranted()) currentPage++
+            2 -> if (storageGranted()) currentPage++
+            3 -> if (overlayGranted()) currentPage++
         }
     }
 
