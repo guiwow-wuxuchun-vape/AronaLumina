@@ -78,6 +78,10 @@
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
+            android:name=".activity.HelpActivity"
+            android:exported="false"
+            android:screenOrientation="landscape" />
+        <activity
             android:name=".activity.MainActivity"
             android:exported="false"
             android:screenOrientation="landscape">

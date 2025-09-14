@@ -103,7 +103,7 @@ fun LandscapeLauncherContent() {
                         if (titleMovedUp) {
                             Spacer(modifier = Modifier.height(8.dp))
                             Text(
-                                text = "选择模式",
+                                text = "进入软件，或者查看帮助",
                                 fontSize = 16.sp,
                                 color = Color(0xFF86D7F7).copy(alpha = 0.7f),
                                 textAlign = TextAlign.Center
@@ -125,8 +125,8 @@ fun LandscapeLauncherContent() {
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
                     LauncherCard(
-                        title = "客户端模式\nClient Mode",
-                        description = "总之你选这个就对了",
+                        title = "开始使用",
+                        description = "made by 稽静小白",
                         icon = Icons.Filled.Dashboard,
                         isLoading = loadingCard == "main",
                         onClick = {
@@ -137,14 +137,14 @@ fun LandscapeLauncherContent() {
                         }
                     )
                     LauncherCard(
-                        title = "远程连接\nRemote Link",
-                        description = "我不知道怎么用，没试过",
+                        title = "查看帮助",
+                        description = "第一次使用请点这里！",
                         icon = Icons.Filled.Link,
-                        isLoading = loadingCard == "remote",
+                        isLoading = loadingCard == "help",
                         onClick = {
                             coroutineScope.launch {
-                                loadingCard = "remote"
-                                startActivityWithTransition(context, RemoteLinkActivity::class.java)
+                                loadingCard = "help"
+                                startActivityWithTransition(context, HelpActivity::class.java)
                             }
                         }
                     )
