@@ -216,7 +216,7 @@ fun SettingsScreen() {
                         
                         DropdownMenu(
                             modifier = Modifier.fillMaxWidth(),
-                            options = listOf("GraceGUI", "KitsuGUI", "ProtohaxUi", "ClickGUI", "WClientUI"),
+                            options = listOf("KitsuGUI", "AronaGUI", "ProtohaxUi", "GraceGUI",  "ClickGUI", "WClientUI"),
                             selectedOption = selectedGUI,
                             onOptionSelected = { newSelection ->
                                 selectedGUI = newSelection
@@ -831,9 +831,10 @@ fun DropdownMenu(
                                 .clip(RoundedCornerShape(2.dp))
                                 .background(
                                     when (selectedOption) {
-                                        "GraceGUI" -> MaterialTheme.colorScheme.primary
                                         "KitsuGUI" -> MaterialTheme.colorScheme.tertiary
+                                        "AronaGUI" ->MaterialTheme.colorScheme.primary
                                         "ProtohaxUi" -> MaterialTheme.colorScheme.error
+                                        "GraceGUI" -> MaterialTheme.colorScheme.primary
                                         "ClickGUI" -> MaterialTheme.colorScheme.secondary
                                         else -> MaterialTheme.colorScheme.primary
                                     }
@@ -884,9 +885,10 @@ fun DropdownMenu(
                                         .clip(RoundedCornerShape(1.dp))
                                         .background(
                                             when (option) {
-                                                "GraceGUI" -> MaterialTheme.colorScheme.primary
                                                 "KitsuGUI" -> MaterialTheme.colorScheme.tertiary
+                                                "AronaGUI" ->MaterialTheme.colorScheme.primary
                                                 "ProtohaxUi" -> MaterialTheme.colorScheme.error
+                                                "GraceGUI" -> MaterialTheme.colorScheme.primary
                                                 "ClickGUI" -> MaterialTheme.colorScheme.secondary
                                                 else -> MaterialTheme.colorScheme.primary
                                             }

@@ -32,6 +32,7 @@ import com.project.lumina.client.overlay.protohax.ProtohaxUi
 import com.project.lumina.client.overlay.clickgui.ClickGUI
 import com.project.lumina.client.overlay.kitsugui.KitsuGUI
 import com.project.lumina.client.overlay.wclient.WClientUI
+import com.project.lumina.client.overlay.arona.AronaGUI
 import kotlin.math.*
 import kotlin.random.Random
 
@@ -59,6 +60,7 @@ class OverlayButton : OverlayWindow() {
         get() = _layoutParams
 
     private val kitsuGUI by lazy { KitsuGUI() }
+    private val aronaGUI by lazy { AronaGUI() }
     private val graceGUI by lazy { GraceMenuUi() }
     private val protohaxUi by lazy { ProtohaxUi() }
     private val clickGUI by lazy { ClickGUI() }
@@ -97,6 +99,7 @@ class OverlayButton : OverlayWindow() {
         }
 
         val selectedGUI = when (selectedGUIName) {
+            "AronaGUI" -> aronaGUI
             "KitsuGUI" -> kitsuGUI
             "ProtohaxUi" -> protohaxUi
             "ClickGUI" -> clickGUI
