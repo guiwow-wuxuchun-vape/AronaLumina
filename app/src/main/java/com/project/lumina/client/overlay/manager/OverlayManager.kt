@@ -97,34 +97,62 @@ object OverlayManager {
         val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         val layoutParams = overlayWindow.layoutParams
         val composeView = overlayWindow.composeView
-    
-        // --------- 1. Android 14 强制校验 token ---------
-        if (Build.VERSION.SDK_INT >= 34) {
-            // 如果 context 不是 Activity，直接抛，避免 BadTokenException
-            if (context !is android.app.Activity) {
-                android.util.Log.e("OverlayManager", "API34+ requires Activity context")
-                return
+        
+        
+        composeView.setOnApplyWindowInsetsListener { view, insets ->
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                view.windowInsetsController?.hide(android.view.WindowInsets.Type.systemBars())
+                view.windowInsetsController?.systemBarsBehavior = 
+                    android.view.WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            } else {
+                @Suppress("DEPRECATION")
+                view.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        or View.SYSTEM_UI_FLAG_FULLSCREEN
+                        or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
             }
-            // 利用 Activity 的 WindowManager（自带 token）
-            val activityWM = context.windowManager
-            try {
-                activityWM.addView(composeView, layoutParams)
-            } catch (e: WindowManager.BadTokenException) {
-                android.util.Log.e("OverlayManager", "BadToken in API34", e)
-            }
-            return
+            insets
         }
-    
-        // --------- 2. 旧系统走老逻辑 ---------
+        
+        composeView.setContent {
+            LuminaClientTheme {
+                CompositionLocalProvider(LocalOverscrollConfiguration provides null) {
+                    overlayWindow.Content()
+                }
+            }
+        }
+        
+        val lifecycleOwner = overlayWindow.lifecycleOwner
+        lifecycleOwner.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
+        composeView.setViewTreeLifecycleOwner(lifecycleOwner)
+        composeView.setViewTreeViewModelStoreOwner(object : ViewModelStoreOwner {
+            override val viewModelStore: ViewModelStore
+                get() = overlayWindow.viewModelStore
+        })
+        composeView.setViewTreeSavedStateRegistryOwner(lifecycleOwner)
+        composeView.compositionContext = overlayWindow.recomposer
+        if (overlayWindow.firstRun) {
+            overlayWindow.composeScope.launch {
+                overlayWindow.recomposer.runRecomposeAndApplyChanges()
+            }
+            overlayWindow.firstRun = false
+        }
+
         try {
             windowManager.addView(composeView, layoutParams)
-        } catch (e: WindowManager.BadTokenException) {
-            // 低版本也遇到 token 失效，直接 toast 后忽略
-            android.widget.Toast.makeText(
-                context,
-                "Overlay failed: app in background",
-                android.widget.Toast.LENGTH_SHORT
-            ).show()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            
+            
+            if (e is WindowManager.BadTokenException) {
+                Toast.makeText(
+                    context,
+                    "Failed to add overlay window: ${e.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 

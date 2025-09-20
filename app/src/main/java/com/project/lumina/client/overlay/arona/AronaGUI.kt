@@ -36,7 +36,7 @@ import kotlinx.coroutines.launch
 
 class AronaGUI : OverlayWindow() {
 
-    override val layoutParams: WindowManager.LayoutParams =
+    override val layoutParams: WindowManager.LayoutParams by lazy {
         WindowManager.LayoutParams().apply {
             flags = (
                 WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN or
@@ -51,6 +51,7 @@ class AronaGUI : OverlayWindow() {
             width = WindowManager.LayoutParams.MATCH_PARENT
             height = WindowManager.LayoutParams.MATCH_PARENT
         }
+    }
 
     @Composable
     override fun Content() = AronaLayout { OverlayManager.dismissOverlayWindow(this) }
