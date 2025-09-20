@@ -216,7 +216,7 @@ fun SettingsScreen() {
                         
                         DropdownMenu(
                             modifier = Modifier.fillMaxWidth(),
-                            options = listOf("KitsuGUI", "AronaGUI", "ProtohaxUi", "GraceGUI",  "ClickGUI", "WClientUI"),
+                            options = listOf("KitsuGUI", "ProtohaxUi", "GraceGUI",  "ClickGUI", "WClientUI"),
                             selectedOption = selectedGUI,
                             onOptionSelected = { newSelection ->
                                 selectedGUI = newSelection
@@ -832,7 +832,6 @@ fun DropdownMenu(
                                 .background(
                                     when (selectedOption) {
                                         "KitsuGUI" -> MaterialTheme.colorScheme.tertiary
-                                        "AronaGUI" ->MaterialTheme.colorScheme.primary
                                         "ProtohaxUi" -> MaterialTheme.colorScheme.error
                                         "GraceGUI" -> MaterialTheme.colorScheme.primary
                                         "ClickGUI" -> MaterialTheme.colorScheme.secondary
@@ -886,7 +885,6 @@ fun DropdownMenu(
                                         .background(
                                             when (option) {
                                                 "KitsuGUI" -> MaterialTheme.colorScheme.tertiary
-                                                "AronaGUI" ->MaterialTheme.colorScheme.primary
                                                 "ProtohaxUi" -> MaterialTheme.colorScheme.error
                                                 "GraceGUI" -> MaterialTheme.colorScheme.primary
                                                 "ClickGUI" -> MaterialTheme.colorScheme.secondary

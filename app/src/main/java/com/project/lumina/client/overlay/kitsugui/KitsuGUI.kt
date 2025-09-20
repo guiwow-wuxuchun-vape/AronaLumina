@@ -40,6 +40,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.graphics.Color
 import com.project.lumina.client.R
 import com.project.lumina.client.constructors.CheatCategory
 import com.project.lumina.client.constructors.Element
@@ -204,7 +205,7 @@ class KitsuGUI : OverlayWindow() {
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
-                        painter = painterResource(id = R.drawable.moon_stars_24),
+                        painter = painterResource(id = R.drawable.lumina_ic),
                         contentDescription = "Logo",
                         tint = Color.White,
                         modifier = Modifier.size(24.dp)
@@ -212,12 +213,12 @@ class KitsuGUI : OverlayWindow() {
                 }
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "LUMINA",
+                    text = "Arona\nLumina",
                     style = TextStyle(
                         fontSize = 18.sp,
                         fontFamily = modernFont,
                         fontWeight = FontWeight.Bold,
-                        color = KitsuOnSurface
+                        color = Color(0xFF86D7F7)
                     ),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
