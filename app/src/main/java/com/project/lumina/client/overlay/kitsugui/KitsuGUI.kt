@@ -206,13 +206,12 @@ class KitsuGUI : OverlayWindow() {
                     Icon(
                         painter = painterResource(id = R.drawable.lumina_ic),
                         contentDescription = "Logo",
-                        tint = Color.White,
-                        modifier = Modifier.size(24.dp)
+                        modifier = Modifier.size(40.dp)
                     )
                 }
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "Arona\nLumina",
+                    text = "Arona",
                     style = TextStyle(
                         fontSize = 18.sp,
                         fontFamily = modernFont,
