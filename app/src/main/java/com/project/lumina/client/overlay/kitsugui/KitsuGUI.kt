@@ -206,8 +206,8 @@ class KitsuGUI : OverlayWindow() {
                     Icon(
                         painter = painterResource(id = R.drawable.lumina_ic),
                         contentDescription = "Logo",
+                        tint = Color.Unspecified,
                         modifier = Modifier.size(40.dp)
-                        tint = Color.Unspecified
                     )
                 }
                 Spacer(modifier = Modifier.width(8.dp))
