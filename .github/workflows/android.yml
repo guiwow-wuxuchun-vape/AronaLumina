@@ -13,32 +13,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: set up JDK 17
+      - name: set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'temurin'
           cache: gradle
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      # 1. 还原签名密钥
-      - name: Decode Keystore
-        run: |
-          echo "${{ secrets.SIGNING_KEY_BASE64 }}" | base64 --decode > app/release.keystore
-
-      # 2. 构建已签名的 release APK
-      - name: Build signed APK
-        env:
-          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+      - name: Build APK
         run: ./gradlew assembleRelease
 
       # 3. 上传构件
       - name: Upload signed APK
         uses: actions/upload-artifact@v4
         with:
-          name: app-release-signed
+          name: app-release
           path: app/build/outputs/apk/release/app-release.apk
