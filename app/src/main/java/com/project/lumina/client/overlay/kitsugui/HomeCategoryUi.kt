@@ -360,13 +360,13 @@ fun HomeCategoryUi() {
                             verticalArrangement = Arrangement.Center
                         ) {
                             Text(
-                                text = if (hasData) "Connected" else "Disconnected",
+                                text = if (hasData) "已连接" else "未连接",
                                 color = Color.White,
                                 fontSize = 11.sp,
                                 fontWeight = FontWeight.SemiBold
                             )
                             Text(
-                                text = if (hasData) "Game data available" else "No game data",
+                                text = if (hasData) "已获取到数据" else "无数据，请进入服务器",
                                 color = Color(0xFFA1A1AA),
                                 fontSize = 8.sp,
                                 textAlign = TextAlign.Start
@@ -461,16 +461,16 @@ fun HomeCategoryUi() {
 
                             Column {
                                 Text(
-                                    text = "Game Version",
+                                    text = "游戏版本",
                                     color = Color(0xFFA1A1AA),
                                     fontSize = 12.sp,
                                     fontWeight = FontWeight.Medium
                                 )
                                 Text(
                                     text = when {
-                                        isLoading -> "Loading..."
-                                        !hasData -> "No Data"
-                                        vanillaVersion.isNullOrEmpty() -> "Unknown"
+                                        isLoading -> "加载中..."
+                                        !hasData -> "无数据，请进入服务器"
+                                        vanillaVersion.isNullOrEmpty() -> "未知"
                                         else -> vanillaVersion!!
                                     },
                                     color = Color.White,
@@ -493,12 +493,12 @@ fun HomeCategoryUi() {
                             ) {
                                 Icon(
                                     painter = painterResource(id = ir.alirezaivaz.tablericons.R.drawable.ic_device_gamepad_2),
-                                    contentDescription = "Game Mode",
+                                    contentDescription = "模式",
                                     tint = Color(0xFF10B981),
                                     modifier = Modifier.size(15.dp)
                                 )
                                 Text(
-                                    text = gameMode ?: "Unknown Mode",
+                                    text = gameMode ?: "未知模式",
                                     color = Color(0xFFE5E7EB),
                                     fontSize = 12.sp,
                                     fontWeight = FontWeight.Medium,
@@ -513,7 +513,7 @@ fun HomeCategoryUi() {
                             ) {
                                 Icon(
                                     painter = painterResource(id = ir.alirezaivaz.tablericons.R.drawable.ic_id),
-                                    contentDescription = "Entity ID",
+                                    contentDescription = "实体 ID",
                                     tint = Color(0xFFF59E0B),
                                     modifier = Modifier.size(15.dp)
                                 )
@@ -538,12 +538,12 @@ fun HomeCategoryUi() {
                                         else
                                             ir.alirezaivaz.tablericons.R.drawable.ic_x
                                     ),
-                                    contentDescription = "Default Permissions",
+                                    contentDescription = "默认权限",
                                     tint = Color(0xFF8B5CF6),
                                     modifier = Modifier.size(15.dp)
                                 )
                                 Text(
-                                    text = if (defaultPlayerPermission != null && defaultPlayerPermission != PlayerPermission.VISITOR) "Perms: Enabled" else "Perms: Disabled",
+                                    text = if (defaultPlayerPermission != null && defaultPlayerPermission != PlayerPermission.VISITOR) "权限: 有" else "权限: 无",
                                     color = Color(0xFFE5E7EB),
                                     fontSize = 12.sp,
                                     fontWeight = FontWeight.Medium,
@@ -558,12 +558,12 @@ fun HomeCategoryUi() {
                             ) {
                                 Icon(
                                     painter = painterResource(id = ir.alirezaivaz.tablericons.R.drawable.ic_command),
-                                    contentDescription = "Command",
+                                    contentDescription = "指令",
                                     tint = Color(0xFF06B6D4),
                                     modifier = Modifier.size(15.dp)
                                 )
                                 Text(
-                                    text = "Commands: ${commandsEnabled ?: "N/A"}",
+                                    text = "指令: ${commandsEnabled ?: "N/A"}",
                                     color = Color(0xFFE5E7EB),
                                     fontSize = 12.sp,
                                     fontWeight = FontWeight.Medium,
@@ -694,16 +694,16 @@ fun HomeCategoryUi() {
                         modifier = Modifier.weight(1f)
                     ) {
                         Text(
-                            text = "Current Level",
+                            text = "当前世界",
                             color = Color(0xFFA1A1AA),
                             fontSize = 9.sp,
                             fontWeight = FontWeight.Medium
                         )
                         Text(
                             text = when {
-                                isLoading -> "Loading..."
-                                !hasData -> "No Level Data"
-                                levelName.isNullOrEmpty() -> "Unknown Level"
+                                isLoading -> "加载中..."
+                                !hasData -> "没有存档数据，请进入服务器"
+                                levelName.isNullOrEmpty() -> "未知存档"
                                 else -> levelName!!
                             },
                             color = Color.White,

@@ -114,12 +114,12 @@
     <string name="module_esp_display_name">ESP 覆盖</string>
     <string name="module_critbot_display_name">暴击机器人</string>
     <string name="module_infiniteaura_display_name">无限光环</string>
-    <string name="module_reach_display_name">扩展范围</string>
+    <string name="module_reach_display_name">长臂大猴子(reach)</string>
     <string name="module_damageboost_display_name">伤害提升</string>
-    <string name="module_fullbright_display_name">全亮</string>
+    <string name="module_fullbright_display_name">夜视</string>
     <string name="module_opfightbot_display_name">自动战斗</string>
     <string name="module_followbot_display_name">跟随机器人</string>
-    <string name="module_velocity_display_name">速度</string>
+    <string name="module_velocity_display_name">反击退</string>
     <string name="module_antikick_display_name">防踢</string>
     <string name="module_quickattack_display_name">快速攻击</string>
     <string name="module_world_debugger_display_name">世界调试器</string>
@@ -128,14 +128,14 @@
     <string name="module_build_denial">遮挡</string>
     <string name="module_hitbox_display_name">碰撞箱</string>
     <string name="module_Anti_Ac_fly_display_name">AAC飞行</string>
-    <string name="module_name_tag_display_name">名称标签</string>
+    <string name="module_name_tag_display_name">玩家ID标签</string>
     <string name="module_anti_blind_display_name">防失明</string>
     <string name="module_dsw_display_name">切换</string>
-    <string name="module_damage_text_display_name">伤害文本</string>
+    <string name="module_damage_text_display_name">伤害文本显示</string>
     <string name="module_farsight_display_name">远视</string>
-    <string name="module_lock_heed_display_name"></string>
-    <string name="arraylist">数组列表</string>
-    <string name="module_minimap_display_name">迷你地图</string>
+    <string name="module_lock_heed_display_name">LockHeed(貌似是个杀戮)</string>
+    <string name="arraylist">功能列表</string>
+    <string name="module_minimap_display_name">小地图</string>
     <string name="module_speedm_display_name">速度计</string>
     <string name="module_sessioni_display_name">会话信息</string>
     <string name="module_watermark_display_name">水印</string>
@@ -165,10 +165,10 @@
     <string name="module_bhop_display_name">连跳</string>
     <string name="module_fly_display_name">飞行</string>
     <string name="module_high_jump_display_name">高跳</string>
-    <string name="module_jet_pack_display_name">喷气背包</string>
+    <string name="module_jet_pack_display_name">喷气背包(没有星星礼盒)</string>
     <string name="module_motion_fly_display_name">动态飞行</string>
     <string name="module_speed_display_name">速度</string>
-    <string name="module_sprint_display_name">冲刺</string>
+    <string name="module_sprint_display_name">♿冲刺♿️(otto帅！otto！)</string>
     <string name="module_free_camera_display_name">自由视角</string>
     <string name="module_no_hurt_camera_display_name">无受伤镜头</string>
     <string name="module_zoom_display_name">缩放</string>
@@ -257,6 +257,6 @@
     <string name="lumina_expectation">我们的目标是提供一个轻量、稳定且功能丰富的解决方案，在不影响系统性能或安全性的情况下增强游戏体验。</string>
     <string name="lumina_compatibility">兼容 Android 9+ 设备以及 Minecraft Pocket Edition 的 64 位和 32 位版本，建议使用最新版本的 Minecraft 以获得最佳体验。</string>
     <string name="lumina_copyright">© 2025 Project Lumina — 根据 GNU GPLv3 许可</string>
-    <string name="lumina_team">由 Project Lumina 团队倾情打造 ♥️</string>
+    <string name="lumina_team">由 Project Lumina 团队和 AronaStudio倾情打造 ♥️</string>
     <string name="connect_with_us">与我们联系</string>
 </resources>

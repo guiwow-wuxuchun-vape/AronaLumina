@@ -117,7 +117,7 @@ fun PlayerListUI() {
                         }
 
                         Text(
-                            text = "Players",
+                            text = "玩家列表",
                             fontSize = 14.sp, 
                             fontWeight = FontWeight.Bold,
                             color = Color.White
@@ -187,7 +187,7 @@ private fun LoadingState() {
                 color = TheNotBackgroundColorForOverlayUi
             )
             Text(
-                text = "Loading players...",
+                text = "加载玩家列表中...",
                 fontSize = 12.sp, 
                 color = Color.White.copy(alpha = 0.8f)
             )
@@ -220,13 +220,13 @@ private fun EmptyState() {
                 tint = Color.White.copy(alpha = 0.6f)
             )
             Text(
-                text = "No players online",
+                text = "没有在线的玩家",
                 fontSize = 14.sp, 
                 fontWeight = FontWeight.Medium,
                 color = Color.White.copy(alpha = 0.8f)
             )
             Text(
-                text = "Join a server to see players",
+                text = "请进入带'Lumina'字样的多人游戏",
                 fontSize = 10.sp, 
                 color = Color.White.copy(alpha = 0.6f)
             )

@@ -122,14 +122,14 @@ fun ConfigCategoryContent() {
                         .padding(start = 16.dp)
                 ) {
                     Text(
-                        text = "Configuration Manager",
+                        text = "配置管理器",
                         style = MaterialTheme.typography.headlineSmall,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onPrimaryContainer
                     )
                     
                     Text(
-                        text = "Save, load, and manage your gameplay configurations",
+                        text = "可以在这里保存和管理参数配置",
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
                     )
@@ -153,7 +153,7 @@ fun ConfigCategoryContent() {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 Text(
-                    text = "Quick Actions",
+                    text = "快速操作",
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.primary
@@ -166,7 +166,7 @@ fun ConfigCategoryContent() {
                     Button(
                         onClick = {
                             configManagerModule.saveConfig()
-                            Toast.makeText(context, "Configuration saved successfully", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "保存成功", Toast.LENGTH_SHORT).show()
                         },
                         modifier = Modifier.weight(1f),
                         colors = ButtonDefaults.buttonColors(
@@ -179,7 +179,7 @@ fun ConfigCategoryContent() {
                             contentDescription = null,
                             modifier = Modifier.padding(end = 8.dp)
                         )
-                        Text("Save Current")
+                        Text("保存当前配置")
                     }
 
                     FilledTonalButton(
@@ -201,7 +201,7 @@ fun ConfigCategoryContent() {
                             contentDescription = null,
                             modifier = Modifier.padding(end = 8.dp)
                         )
-                        Text("Import")
+                        Text("导入配置")
                     }
                 }
             }
@@ -223,7 +223,7 @@ fun ConfigCategoryContent() {
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Text(
-                    text = "Saved Configurations",
+                    text = "已保存的配置",
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.primary
@@ -249,12 +249,12 @@ fun ConfigCategoryContent() {
                                 modifier = Modifier.size(36.dp)
                             )
                             Text(
-                                text = "No configurations saved yet",
+                                text = "没有已保存的数据",
                                 style = MaterialTheme.typography.bodyLarge,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f)
                             )
                             Text(
-                                text = "Save your current settings to create a configuration",
+                                text = "点一下保存就能创建配置了",
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
                             )
@@ -350,7 +350,7 @@ private fun ConfigFileItem(
                         contentDescription = null,
                         modifier = Modifier.padding(end = 4.dp)
                     )
-                    Text("Load")
+                    Text("加载")
                 }
 
                 OutlinedButton(
@@ -366,7 +366,7 @@ private fun ConfigFileItem(
                         contentDescription = null,
                         modifier = Modifier.padding(end = 4.dp)
                     )
-                    Text("Export")
+                    Text("导出")
                 }
 
                 OutlinedButton(
@@ -382,7 +382,7 @@ private fun ConfigFileItem(
                         contentDescription = null,
                         modifier = Modifier.padding(end = 4.dp)
                     )
-                    Text("Delete")
+                    Text("丢了")
                 }
             }
         }
